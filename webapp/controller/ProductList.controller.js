@@ -24,6 +24,10 @@ sap.ui.define([
 			const oList = this.byId("productList");
 			const oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
+        },
+        onPressForInfo(){
+            const oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("detail");
         }
 	});
 });

@@ -1,0 +1,12 @@
+<mvc:View
+    controllerName="sapui5hw.controller.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true">
+    <Page title="{i18n>homePageTitle}">
+        <content>
+            <mvc:XMLView viewName="sapui5hw.view.Header" />
+            <mvc:XMLView viewName="sapui5hw.view.ProductList" />
+        </content>
+    </Page>
+</mvc:View>

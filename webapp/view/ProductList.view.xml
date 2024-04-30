@@ -2,7 +2,6 @@
     controllerName="sapui5hw.controller.ProductList"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
-   
     <List
         id="productList"
         class="sapUiResponsiveMargin"
@@ -13,7 +12,6 @@
                 path : 'category',
                 group : true
             }
-
         }"  >
           <headerToolbar>
          <Toolbar>
@@ -37,7 +35,12 @@
                         showMeasure: false
                     }
                 }"
-                numberUnit="{view>/currency}"/>
+                numberUnit="{view>/currency}"
+                numberState="{= ${product>price} > 500 ? 'Error' : 'Success' }"
+                type="Navigation"
+                press=".onPressForInfo">
+             
+             </ObjectListItem>    
         </items>
     </List>
 </mvc:View>

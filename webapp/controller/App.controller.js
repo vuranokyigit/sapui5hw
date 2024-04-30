@@ -3,6 +3,5 @@ sap.ui.define([
 ], (Controller) => {
     'use strict';
     return Controller.extend("sapui5hw.controller.App",{
-    
     })
 });
