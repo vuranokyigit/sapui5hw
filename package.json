@@ -1,0 +1,12 @@
+{
+  "name": "sapui5hw",
+  "version": "1.0.0",
+  "description": "homework",
+  "scripts": {
+    "start": "ui5 serve -o index.html"
+},
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
