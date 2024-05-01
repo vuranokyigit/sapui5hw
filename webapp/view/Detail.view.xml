@@ -1,0 +1,12 @@
+<mvc:View
+    controllerName="sapui5hw.controller.Detail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:wt="sapui5hw.control">
+	<Page
+		title="{i18n>infoTitle}"
+		showNavButton="true"
+		navButtonPress=".onNavBack">
+		<ObjectHeader title="Product"/>
+	</Page>
+</mvc:View>
