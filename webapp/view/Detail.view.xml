@@ -7,6 +7,9 @@
 		title="{i18n>infoTitle}"
 		showNavButton="true"
 		navButtonPress=".onNavBack">
-		<ObjectHeader title="Product"/>
+		<ObjectHeader 
+		intro="{product>brand}"
+		title="{product>title}"
+		/>
 	</Page>
 </mvc:View>

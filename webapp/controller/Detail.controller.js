@@ -8,6 +8,12 @@ sap.ui.define([
 			const oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("detail").attachPatternMatched(this.onObjectMatched, this);
 		},
+        onObjectMatched(oEvent) {
+			this.getView().bindElement({
+				path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").productPath),
+				model: "product"
+			});
+		},
         onNavBack() {
 			const oHistory = History.getInstance(),
 			 sPreviousHash = oHistory.getPreviousHash();

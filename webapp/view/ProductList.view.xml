@@ -2,7 +2,7 @@
     controllerName="sapui5hw.controller.ProductList"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
-    <List
+    <Table
         id="productList"
         class="sapUiResponsiveMargin"
         width="auto"
@@ -12,35 +12,96 @@
                 path : 'category',
                 group : true
             }
+            
         }"  >
           <headerToolbar>
          <Toolbar>
             <Title text="{i18n>ProductListTitle}"/>
             <ToolbarSpacer/>
+
             <SearchField 
+               id="searchField"
                width="40%" 
-               search=".onFilterProducts"/>
+               search=".onFilterProducts"
+               enableSuggestions="true"
+               suggest=".onSuggest"
+               suggestionItems="{
+				path: 'product>/Products',
+				sorter: { path: 'title' }
+                
+			}">
+            <SuggestionItem text="{product>title}" />
+            </SearchField>
+
          </Toolbar>
       </headerToolbar>
-        <items>
-            <ObjectListItem
-                title="{product>title}"
-                number="{
-                    parts: [
-                        'product>price',
-                        'view>/currency'
-                    ],
-                    type: 'sap.ui.model.type.Currency',
-                    formatOptions: {
-                        showMeasure: false
-                    }
-                }"
-                numberUnit="{view>/currency}"
-                numberState="{= ${product>price} > 500 ? 'Error' : 'Success' }"
-                type="Navigation"
-                press=".onPressForInfo">
+        <columns> 
+			<Column
+				hAlign="End"
+				minScreenWidth="Small"
+				demandPopin="true"
+				width="5em">
+				<Text text="{i18n>columnQuantity}" />
+			</Column>
+			<Column>
+				<Text text="{i18n>columnName}" />
+			</Column>
+			<Column
+				minScreenWidth="Small"
+				demandPopin="true">
+				<Text text="{i18n>columnStatus}" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="{i18n>columnSupplier}" />
+			</Column>
+			<Column hAlign="End">
+				<Text text="{i18n>columnPrice}" />
+			</Column>
+		</columns>      
+        
+          <items>
+            <ColumnListItem
+            type="Navigation"
+            press=".onPressForInfo">
+            <cells>
+            <ObjectNumber
+            number="{product>stock}"
+            emphasized="false"
+            />
+            <ObjectIdentifier title="{product>title}" />
+		    <Text text="{product>brand}" />
+             <ObjectNumber
+						number="{
+								parts: [
+									'product>discountPercentage'
+								],
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {
+									showMeasure: false
+								}
+							}"
+						unit="{view>/percent}"
+						state="{= ${product>discountPercentage} > 15 ? 'Success' : 'Error' }"
+                        /> 
+            <ObjectNumber
+						number="{
+								parts: [
+									'product>price',
+									'view>/currency'
+								],
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {
+									showMeasure: false
+								}
+							}"
+						unit="{view>/currency}"
+						state="{= ${product>price} > 500 ? 'Error' : 'Success' }"/>  
+            </cells>
+        
              
-             </ObjectListItem>    
+             </ColumnListItem>    
         </items>
-    </List>
+    </Table>
 </mvc:View>
