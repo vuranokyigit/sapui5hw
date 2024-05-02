@@ -6,18 +6,5 @@
       headerText="{i18n>productSearch}"
       class="sapUiResponsiveMargin"
       width="auto" >
-      <content>
-      <Button
-         text="{i18n>showHelloButtonText}"
-         press=".onShow"
-         class="myCustomButton"/>
-      <Input
-         value="{/recipient/name}"
-         valueLiveUpdate="true"
-         width="60%"/>
-      <FormattedText
-         htmlText="Hello {/recipient/name}"
-         class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>
-      </content>
    </Panel>
 </mvc:View>

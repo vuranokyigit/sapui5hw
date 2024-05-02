@@ -26,28 +26,33 @@ sap.ui.define([
 			 oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
         },
-        //Suggestion on Search
         onSuggest(oEvent) {
-            let sValue = oEvent.getParameter("suggestValue").toUpperCase(),
-             oSF = oEvent.getSource(),
-             aFilters = [];
+            let sValue = oEvent.getParameter("suggestValue").toUpperCase();
+            let oSF = oEvent.getSource();
+            let oSuggestionItems = oSF.getSuggestionItems();
+            let aFilters = [];
         
             if (sValue) {
-                aFilters.push(new Filter("title", FilterOperator.Contains, sValue));
+                aFilters = [
+                    new Filter("title", FilterOperator.Contains, sValue)
+                ];
             }
+        
             // Ürün modelinden filtreleme yaparak yeni bir öneri listesi oluştur
-            let oProductList = this.getView().getModel("product"),
-             aFilteredProducts = oProductList.getProperty("/Products").filter(function(oProduct) {
+            let oProductList = this.getView().getModel("product");
+            let aFilteredProducts = oProductList.getProperty("/Products").filter(function(oProduct) {
                 return aFilters.some(function(oFilter) {
                     return oFilter.fnTest(oProduct);
                 });
             });
+        
             // Yeni öneri listesini ayarla
             oSF.suggestionItems = aFilteredProducts.map(function(oProduct) {
                 return new SuggestionItem({
                     text: oProduct.title
                 });
             });
+        
             oSF.suggest();
         },
         onPressForInfo(oEvent){
