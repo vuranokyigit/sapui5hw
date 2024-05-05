@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], (Controller, JSONModel,Filter,FilterOperator) => {
+	"sap/ui/model/FilterOperator",
+    "sap/ui/model/Sorter"
+], (Controller, JSONModel,Filter,FilterOperator,Sorter) => {
 	"use strict";
 
 	return Controller.extend("sapui5hw.controller.ProductList", {
@@ -55,6 +56,27 @@ sap.ui.define([
         
             oSF.suggest();
         },
+       async handleSortButtonPressed(){
+            this.oDialog ??=await this.loadFragment({
+                name: "sapui5hw.view.SortDialog"
+            });
+            this.oDialog.open();
+        },
+        handleSortDialogConfirm: function (oEvent) {
+			var oTable = this.byId("productList"),
+				mParams = oEvent.getParameters(),
+				oBinding = oTable.getBinding("items"),
+				sPath,
+				bDescending,
+				aSorters = [];
+
+			sPath = mParams.sortItem.getKey();
+			bDescending = mParams.sortDescending;
+			aSorters.push(new Sorter(sPath, bDescending));
+
+			// apply the selected sort and group settings
+			oBinding.sort(aSorters);
+		},
         onPressForInfo(oEvent){
             const oItem = oEvent.getSource();
             const oRouter = this.getOwnerComponent().getRouter();

@@ -1,5 +1,6 @@
 <mvc:View
     controllerName="sapui5hw.controller.ProductList"
+    xmlns:l="sap.ui.layout"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
     <Table
@@ -18,7 +19,10 @@
          <Toolbar>
             <Title text="{i18n>ProductListTitle}"/>
             <ToolbarSpacer/>
-
+          	<Button
+				tooltip="Sort"
+				icon="sap-icon://sort"
+			    press="handleSortButtonPressed"/>
             <SearchField 
                id="searchField"
                width="40%" 

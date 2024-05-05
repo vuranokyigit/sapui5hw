@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+    controllerName="sapui5hw.controller.ProductList"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleSortDialogConfirm">
+		<sortItems>
+			<ViewSettingsItem text="Price" key="{price}" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>
