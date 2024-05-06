@@ -24,6 +24,7 @@
 				icon="sap-icon://sort"
 			    press="handleSortButtonPressed"/>
             <SearchField 
+            
                id="searchField"
                width="40%" 
                search=".onFilterProducts"
@@ -67,6 +68,7 @@
         
           <items>
             <ColumnListItem
+            class="myCustomStyleColumn"
             type="Navigation"
             press=".onPressForInfo">
             <cells>
